@@ -2,71 +2,158 @@
 <html lang="en">
 
 <head>
-    <meta charset="UTF-8">
-    <title>Local Music Player</title>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Will You Be Mine?</title>
+    <link href="https://fonts.googleapis.com/css2?family=Great+Vibes&family=Open+Sans&display=swap" rel="stylesheet">
     <style>
         body {
-            background: #1e1e1e;
-            color: white;
-            font-family: Arial, sans-serif;
+            margin: 0;
+            padding: 0;
+            font-family: 'Open Sans', sans-serif;
+            background-image: url('https://images.unsplash.com/photo-1506748686214-e9df14d4d9d0?ixlib=rb-4.0.3&auto=format&fit=crop&w=1470&q=80');
+            background-size: cover;
+            background-position: center;
             display: flex;
-            flex-direction: column;
-            align-items: center;
             justify-content: center;
+            align-items: center;
             height: 100vh;
+            animation: fadeIn 3s ease-in;
+            overflow: hidden;
         }
 
-        .player {
-            background: #333;
-            padding: 20px;
-            border-radius: 10px;
+        @keyframes fadeIn {
+            0% {
+                opacity: 0;
+            }
+
+            100% {
+                opacity: 1;
+            }
+        }
+
+        .proposal-box {
+            background-color: rgba(255, 255, 255, 0.85);
+            backdrop-filter: blur(5px);
+            padding: 40px;
+            border-radius: 20px;
             text-align: center;
-            box-shadow: 0 0 10px #000;
+            max-width: 600px;
+            box-shadow: 0 10px 25px rgba(0, 0, 0, 0.2);
+            transform: translateY(50px);
+            animation: slideUp 1.5s ease-out forwards;
+            position: relative;
+            z-index: 2;
         }
 
-        input[type="file"] {
+        @keyframes slideUp {
+            to {
+                transform: translateY(0);
+            }
+        }
+
+        h1 {
+            font-family: 'Great Vibes', cursive;
+            font-size: 3rem;
+            color: #d6336c;
             margin-bottom: 20px;
+            animation: fadeInText 2s ease-in;
         }
 
-        audio {
-            width: 100%;
-            margin-top: 10px;
+        h2 {
+            font-size: 2rem;
+            color: #b91c1c;
+            margin-bottom: 30px;
+            animation: pulse 2s infinite;
         }
 
-        .file-name {
-            margin-top: 10px;
-            font-size: 1rem;
-            color: #aaa;
+        .i-love-you {
+            font-size: 2.5rem;
+            font-family: 'Great Vibes', cursive;
+            color: #ff007f;
+            margin-top: 30px;
+            animation: floatText 3s ease-in-out infinite;
+        }
+
+        @keyframes floatText {
+
+            0%,
+            100% {
+                transform: translateY(0);
+            }
+
+            50% {
+                transform: translateY(-10px);
+            }
+        }
+
+        @keyframes fadeInText {
+            0% {
+                opacity: 0;
+                transform: translateY(-20px);
+            }
+
+            100% {
+                opacity: 1;
+                transform: translateY(0);
+            }
+        }
+
+        @keyframes pulse {
+            0% {
+                transform: scale(1);
+            }
+
+            50% {
+                transform: scale(1.05);
+            }
+
+            100% {
+                transform: scale(1);
+            }
+        }
+
+        p {
+            font-size: 1.2rem;
+            color: #333;
+            margin-bottom: 30px;
+            animation: fadeInText 2.5s ease-in;
+        }
+
+        button {
+            background-color: #e63946;
+            color: white;
+            border: none;
+            padding: 12px 25px;
+            font-size: 1.1rem;
+            border-radius: 30px;
+            cursor: pointer;
+            transition: background-color 0.3s ease, transform 0.3s ease;
+        }
+
+        button:hover {
+            background-color: #c9184a;
+            transform: scale(1.05);
         }
     </style>
 </head>
 
 <body>
-    <div class="player">
-        <h2>Local Music Player</h2>
-        <input type="file" accept="audio/*" id="fileInput">
-        <div class="file-name" id="fileName">No file selected</div>
-        <audio controls id="audioPlayer">
-            Your browser does not support the audio element.
-        </audio>
+    <div class="proposal-box">
+        <h1>My Love,</h1>
+        <p>
+            From the moment I met you, everything changed. You make my world brighter, my heart fuller, and every day
+            worth living. So today, I have a question...
+        </p>
+        <h2>Will you be mine forever?</h2>
+        <button onclick="sayYes()">Yes, I Will ♥</button>
+        <div class="i-love-you">I Love You 💖</div>
     </div>
 
     <script>
-        const fileInput = document.getElementById('fileInput');
-        const audioPlayer = document.getElementById('audioPlayer');
-        const fileName = document.getElementById('fileName');
-
-        fileInput.addEventListener('change', function () {
-            const file = this.files[0];
-            if (file) {
-                const fileURL = URL.createObjectURL(file);
-                audioPlayer.src = fileURL;
-                fileName.textContent = "Playing: " + file.name;
-                audioPlayer.play();
-            } else {
-                fileName.textContent = "No file selected";
-            }
-        });
+        function sayYes() {
+            alert("You just made me the happiest person alive! ❤️");
+        }
     </script>
 </body>
 
