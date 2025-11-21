@@ -1,0 +1,55 @@
+/* ShopNow styles - Light/Dark via CSS variables */
+:root{
+  --bg: #f5f6f8;
+  --surface: #ffffff;
+  --text: #111827;
+  --muted: #6b7280;
+  --brand: #131921;
+  --accent: #ff9900;
+  --accent-2: #febd69;
+  --card-shadow: 0 6px 18px rgba(16,24,40,0.06);
+  --transition: 250ms ease;
+}
+[data-theme="dark"]{
+  --bg: #0b0f13;
+  --surface: #0f1720;
+  --text: #e6eef6;
+  --muted: #93a0b0;
+  --brand: #0b1220;
+  --accent: #ffb84d;
+  --accent-2: #ffda9a;
+  --card-shadow: 0 6px 24px rgba(0,0,0,0.6);
+}
+*{box-sizing:border-box}
+body{font-family:Inter,Arial,sans-serif;background:var(--bg);color:var(--text);margin:0;transition:background var(--transition), color var(--transition)}
+.header{background:var(--brand);color:#fff;display:flex;align-items:center;padding:10px 16px;gap:12px;position:sticky;top:0;z-index:1200}
+.logo{font-weight:800;color:var(--accent);cursor:pointer}
+.searchbar{display:flex;flex:1;gap:8px;max-width:720px}
+.searchbar input{flex:1;padding:10px;border-radius:6px;border:0;outline:none}
+.searchbar button{background:var(--accent-2);border:0;padding:10px 12px;border-radius:6px;cursor:pointer;font-weight:700}
+.controls{display:flex;gap:8px;align-items:center}
+.btn{background:var(--accent);color:#111;border:0;padding:8px 10px;border-radius:8px;cursor:pointer;font-weight:700}
+.icon-btn{background:transparent;border:0;color:#fff;padding:8px;border-radius:6px;cursor:pointer}
+.theme-toggle{display:flex;align-items:center;gap:8px;color:#fff}
+.container{max-width:1200px;margin:14px auto;padding:0 12px}
+.carousel{background:var(--surface);border-radius:10px;overflow:hidden;padding:0;margin:0 0 16px;box-shadow:var(--card-shadow)}
+.carousel-track{display:flex;transition:transform .5s ease}
+.carousel img{width:100%;height:360px;object-fit:cover;display:block}
+.grid{display:grid;grid-template-columns:repeat(auto-fill,minmax(220px,1fr));gap:16px}
+.card{background:var(--surface);padding:12px;border-radius:10px;box-shadow:var(--card-shadow);transition:transform .18s ease, box-shadow .18s ease}
+.card img{width:100%;height:160px;object-fit:cover;border-radius:8px}
+.card h3{font-size:15px;margin:8px 0}
+.card .price{color:#b12704;font-weight:800}
+.row{margin:18px 0}
+.row-track{display:flex;gap:12px;overflow-x:auto;padding:12px}
+.row-card{min-width:180px;background:var(--surface);padding:10px;border-radius:8px;box-shadow:var(--card-shadow)}
+.cart-sidebar{position:fixed;right:-420px;top:0;width:380px;height:100%;background:var(--surface);box-shadow:-8px 0 30px rgba(0,0,0,0.2);padding:18px;transition:right .35s ease;z-index:1400}
+.cart-sidebar.open{right:12px}
+.cart-item{display:flex;gap:10px;align-items:center;margin-bottom:12px}
+.cart-item img{width:64px;height:64px;object-fit:cover;border-radius:6px}
+.footer{padding:18px;text-align:center;color:var(--muted);margin-top:18px}
+.badge{background:#111;color:#fff;padding:4px 8px;border-radius:999px;font-weight:700;margin-left:6px}
+.page-title{margin:10px 0 6px}
+.search-results-info{color:var(--muted);margin-bottom:8px}
+kbd{background:rgba(0,0,0,0.08);padding:2px 6px;border-radius:4px;font-family:monospace}
+@media(max-width:800px){.searchbar{max-width:unset}.carousel img{height:220px} .cart-sidebar.open{right:0;width:100%}}
