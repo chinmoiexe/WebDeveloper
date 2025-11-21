@@ -1,73 +1,246 @@
 <!DOCTYPE html>
 <html lang="en">
-
 <head>
-    <meta charset="UTF-8">
-    <title>Local Music Player</title>
-    <style>
-        body {
-            background: #1e1e1e;
-            color: white;
-            font-family: Arial, sans-serif;
-            display: flex;
-            flex-direction: column;
-            align-items: center;
-            justify-content: center;
-            height: 100vh;
-        }
+  <meta charset="utf-8" />
+  <meta http-equiv="x-ua-compatible" content="ie=edge" />
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <title>Dibyajyoti Rabha — Portfolio</title>
 
-        .player {
-            background: #333;
-            padding: 20px;
-            border-radius: 10px;
-            text-align: center;
-            box-shadow: 0 0 10px #000;
-        }
+  <!-- Google Font -->
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link href="https://fonts.googleapis.com/css2?family=Poppins:ital,wght@0,100;0,200;0,300;0,400;0,500;0,600;0,700;0,800;0,900;1,100;1,200;1,300;1,400;1,500;1,600;1,700;1,800;1,900&display=swap" rel="stylesheet">
 
-        input[type="file"] {
-            margin-bottom: 20px;
-        }
+  <!-- Font Awesome -->
+  <script src="https://kit.fontawesome.com/66aa7c98b3.js" crossorigin="anonymous"></script>
 
-        audio {
-            width: 100%;
-            margin-top: 10px;
-        }
+  <style>
+  /* ---------- BASE ---------- */
+  * { margin: 0; padding: 0; box-sizing: border-box; }
+  body { font-family: "Poppins", sans-serif; color: #163034; background: linear-gradient(180deg,#ffffff,#f7efe6); }
 
-        .file-name {
-            margin-top: 10px;
-            font-size: 1rem;
-            color: #aaa;
-        }
-    </style>
+  .container { max-width: 1200px; width: 90%; margin: 0 auto; }
+
+/* ---------- NAVBAR ---------- */
+  .navbar { position: fixed; width: 100%; top: 0; z-index: 500; }
+  .navbar-container { display:flex; justify-content:space-between; align-items:center; height:64px; padding: 0 10px; }
+  .navbar-brand { color: #163034; font-size:1.3rem; font-weight:700; }
+  .menu-items { display:flex; gap:12px; list-style:none; }
+  .menu-items li { padding: 0.4rem; }
+  .menu-items a { text-decoration:none; color:#163034; font-weight:600; padding:0.25rem; }
+  .menu-items a:hover { border-bottom:2px solid rgba(22,48,52,0.12); border-radius:2px; }
+
+  /* solid state when scrolled */
+  .navbar.solid { background: rgba(255,255,255,0.98); box-shadow: 0 6px 24px rgba(10,20,20,0.06); }
+
+/* ---------- HERO / HEADER ---------- */
+  header { min-height: 100vh; display:flex; align-items:center; justify-content:center; position:relative; padding-top:64px; }
+  .home-content .name { text-align:center; padding: 60px 20px; }
+  .home-content h1 { font-size:2.4rem; color:#163034; margin-bottom:8px; }
+  .home-content p { font-size:1.15rem; color:#3f5b56; margin-bottom:18px; }
+
+  .angle-down-icon { position:absolute; bottom:40px; left:50%; transform:translateX(-50%); }
+  .angle-down-icon a { display:inline-block; width:52px; height:52px; border-radius:50%; border:2px solid #163034; text-align:center; line-height:48px; color:#163034; text-decoration:none; font-size:20px; }
+
+/* ---------- ABOUT ---------- */
+  .about-me { padding: 60px 0; }
+  .about-heading { color:#2b7f6b; font-size:2rem; font-weight:600; text-align:center; margin-bottom:18px; }
+  .about-content { display:flex; gap:30px; flex-wrap:wrap; align-items:center; }
+
+  .left-content, .right-content { background:#fff; border-radius:14px; padding:20px; box-shadow: 0 8px 24px rgba(12,18,18,0.06); flex:1 1 380px; }
+  .left-content { text-align:center; }
+
+  /* FIXED IMAGE PATH: put your portrait at ./img/myimage.png */
+  .left-content img { width:200px; height:200px; object-fit:cover; border-radius:50%; display:block; margin:14px auto; box-shadow: 0 10px 24px rgba(12,18,18,0.06); }
+
+  .about-content p { color:#3f5b56; font-size:1.05rem; padding:0 0.5rem; }
+
+  .skills-heading { color:#2b7f6b; font-size:1.5rem; margin-bottom:8px; text-align:center; }
+
+/* ---------- SKILLS BAR ---------- */
+  .skills-bar { padding: 8px 6px; }
+  .bar { margin:16px 0; }
+  .bar .info { display:flex; justify-content:space-between; align-items:center; margin-bottom:8px; color:#163034; font-weight:600; }
+  .progress-line { position:relative; height:12px; background:#efe7dd; border-radius:999px; overflow:hidden; width:100%; max-width:560px; }
+  .progress-line span { position:absolute; left:0; top:0; bottom:0; border-radius:999px; background: linear-gradient(90deg,#ffd9c7,#f6cbbf); width:0%; transition: width 900ms cubic-bezier(.2,.9,.2,1); }
+
+  .progress-line .html { width:80%; }
+  .progress-line .css { width:70%; }
+  .progress-line .bootstrap { width:50%; }
+  .progress-line .javascript { width:50%; }
+  .progress-line .c { width:50%; }
+
+  .bar .progress-line span::after { position:absolute; right:6px; top:-28px; font-size:12px; color:#163034; background:#fff; padding:2px 8px; border-radius:4px; font-weight:700; }
+  .progress-line .html::after { content:"80%"; }
+  .progress-line .css::after { content:"70%"; }
+  .progress-line .bootstrap::after { content:"50%"; }
+  .progress-line .javascript::after { content:"50%"; }
+  .progress-line .c::after { content:"50%"; }
+
+/* ---------- PORTFOLIO ---------- */
+  .portfolio { padding: 60px 0; }
+  .proj-heading h1 { text-align:center; color:#163034; font-size:2rem; margin-bottom:18px; }
+  .portfolio-content { display:flex; gap:24px; flex-wrap:wrap; justify-content:center; }
+
+  .proj-card { background:#fff; border-radius:14px; padding:18px; width: 360px; box-shadow:0 10px 30px rgba(12,18,18,0.06); display:flex; flex-direction:column; align-items:center; text-align:center; }
+  .proj-card img { width:100%; height:210px; object-fit:cover; border-radius:10px; margin-bottom:12px; }
+  .proj-card h3 { color:#163034; margin:8px 0; font-size:1.2rem; }
+  .proj-card p { color:#3f5b56; font-weight:600; margin-bottom:12px; }
+  .proj-card .button { background:#fff; border:1px solid #e6dcd2; padding:8px 12px; border-radius:8px; text-decoration:none; color:#163034; margin:6px; display:inline-block; }
+
+  .more-work { text-align:center; margin-top:18px; color:#163034; font-weight:600; }
+
+/* ---------- CONTACT ---------- */
+  .contact { padding:60px 0; }
+  .contact-content { background:#fff; padding:28px; border-radius:14px; box-shadow:0 10px 30px rgba(12,18,18,0.06); text-align:center; max-width:760px; margin: 0 auto; }
+  .contact-content h2 { color:#2b7f6b; font-size:1.8rem; margin-bottom:6px; }
+  .contact-content p { color:#3f5b56; }
+
+/* ---------- RESPONSIVE ---------- */
+  @media (max-width: 800px) {
+    .menu-items { display:none; }
+    .about-content { flex-direction:column; }
+    .proj-card { width: 100%; max-width:520px; }
+  }
+  </style>
 </head>
 
 <body>
-    <div class="player">
-        <h2>Local Music Player</h2>
-        <input type="file" accept="audio/*" id="fileInput">
-        <div class="file-name" id="fileName">No file selected</div>
-        <audio controls id="audioPlayer">
-            Your browser does not support the audio element.
-        </audio>
+
+  <!-- NAV -->
+  <header>
+    <nav class="navbar">
+      <div class="navbar-container container">
+        <div class="navbar-brand">Dibyajyoti Rabha</div>
+        <ul class="menu-items">
+          <li><a href="#home-page">Home</a></li>
+          <li><a href="#about">About</a></li>
+          <li><a href="#my-works">Projects</a></li>
+          <li><a href="#contact-me">Contact</a></li>
+        </ul>
+      </div>
+    </nav>
+
+    <!-- HERO -->
+    <div class="home-content" id="home-page">
+      <div class="name container">
+        <h1>Hi, I'm <strong>Dibyajyoti Rabha</strong></h1>
+        <p>A Web Developer in training — I build clean and usable web experiences.</p>
+      </div>
+
+      <div class="angle-down-icon">
+        <a href="#about" aria-label="Scroll to about"><i class="fas fa-angle-down"></i></a>
+      </div>
     </div>
+  </header>
 
-    <script>
-        const fileInput = document.getElementById('fileInput');
-        const audioPlayer = document.getElementById('audioPlayer');
-        const fileName = document.getElementById('fileName');
+  <!-- ABOUT -->
+  <section class="about-me" id="about">
+    <div class="container">
+      <h2 class="about-heading">About Me</h2>
 
-        fileInput.addEventListener('change', function () {
-            const file = this.files[0];
-            if (file) {
-                const fileURL = URL.createObjectURL(file);
-                audioPlayer.src = fileURL;
-                fileName.textContent = "Playing: " + file.name;
-                audioPlayer.play();
-            } else {
-                fileName.textContent = "No file selected";
-            }
+      <div class="about-content">
+        <div class="left-content">
+          <!-- make sure this file exists: ./img/myimage.png -->
+          <img src="D:\C PROGRAMMING\HTML\Portfolio\imagechinm0i.png" alt="Dibyajyoti Rabha portrait"
+               onerror="this.onerror=null;this.src='https://via.placeholder.com/200x200.png?text=Profile+Image'">
+
+          <p>I am 19 years old, a BCA student at Pandu College. I enjoy solving problems and creating visually pleasing, usable websites. Always learning and improving.</p>
+          <p style="margin-top:12px;"><a href="#my-works" style="color:#2b7f6b; text-decoration:none; font-weight:700;">Check out my work ↓</a></p>
+        </div>
+
+        <aside class="right-content">
+          <h3 class="skills-heading">My Skills</h3>
+          <div class="skills-bar">
+            <div class="bar">
+              <div class="info"><span>HTML</span></div>
+              <div class="progress-line"><span class="html" aria-hidden="true"></span></div>
+            </div>
+            <div class="bar">
+              <div class="info"><span>CSS</span></div>
+              <div class="progress-line"><span class="css" aria-hidden="true"></span></div>
+            </div>
+            <div class="bar">
+              <div class="info"><span>PYTHON</span></div>
+              <div class="progress-line"><span class="bootstrap" aria-hidden="true"></span></div>
+            </div>
+            <div class="bar">
+              <div class="info"><span>JAVASCRIPT</span></div>
+              <div class="progress-line"><span class="javascript" aria-hidden="true"></span></div>
+            </div>
+            <div class="bar">
+              <div class="info"><span>C Programming</span></div>
+              <div class="progress-line"><span class="c" aria-hidden="true"></span></div>
+            </div>
+          </div>
+        </aside>
+      </div>
+    </div>
+  </section>
+
+  <!-- PORTFOLIO -->
+  <section id="my-works" class="portfolio">
+    <div class="container">
+      <div class="proj-heading"><h1>Portfolio</h1></div>
+
+      <div class="portfolio-content">
+        <article class="proj-card">
+          <img src="https://img.freepik.com/premium-vector/calculator-logo_10250-2603.jpg?w=2000" alt="Calculator project" width="20px">
+          <h3>Calculator</h3>
+          <p>Built using HTML, CSS and JavaScript.</p>
+          <a class="button" href="https://calcool.netlify.app/" target="_blank" rel="noopener noreferrer">Try Live</a>
+          <a class="button" href="https://calcool.netlify.app/" target="_blank" rel="noopener noreferrer">View Source</a>
+        </article>
+
+        <article class="proj-card">
+          <img src="https://cdn.dribbble.com/userupload/17039932/file/original-983633d1f6de58f5d871f174ff34f057.jpg?resize=400x0" alt="E-commerce project">
+          <h3>E-Commerce Webpage</h3>
+          <p>Static e-commerce layout built with HTML, CSS and JS.</p>
+          <a class="button" href="https://ecommercexe.netlify.app/" target="_blank" rel="noopener noreferrer">Try Live</a>
+          <a class="button" href="https://ecommercexe.netlify.app/" target="_blank" rel="noopener noreferrer">View Source</a>
+        </article>
+      </div>
+
+      <p class="more-work">More: <a href="https://app.netlify.com/teams/chinmoiexe/projects" target="_blank" rel="noopener noreferrer" style="color:#163034;">CHiNM0i</a></p>
+    </div>
+  </section>
+
+  <!-- CONTACT -->
+  <section id="contact-me" class="contact">
+    <div class="container">
+      <div class="contact-content">
+        <h2>Contact Me</h2>
+        <p class="mail">Get in touch — <strong>rabhadibyajyoti40@gmail.com</strong></p>
+        <p class="links">Find me on:
+          <a href="#" aria-label="LinkedIn"><i class="fab fa-linkedin"></i></a>
+          <a href="#" aria-label="CodePen"><i class="fab fa-codepen"></i></a>
+          <a href="#" aria-label="GitHub"><i class="fab fa-github"></i></a>
+        </p>
+      </div>
+    </div>
+  </section>
+
+  <script>
+    // Sticky navbar background toggle on scroll
+    (function(){
+      const navbar = document.querySelector('.navbar');
+      const hero = document.querySelector('header');
+      window.addEventListener('scroll', () => {
+        if (window.scrollY > 60) navbar.classList.add('solid');
+        else navbar.classList.remove('solid');
+      });
+
+      // Smooth scroll for anchor links
+      document.querySelectorAll('a[href^="#"]').forEach(a => {
+        a.addEventListener('click', function(e) {
+          const target = document.querySelector(this.getAttribute('href'));
+          if (target) {
+            e.preventDefault();
+            window.scrollTo({ top: target.offsetTop - 56, behavior:'smooth' });
+            history.replaceState(null, null, this.getAttribute('href'));
+          }
         });
-    </script>
+      });
+    })();
+  </script>
 </body>
-
 </html>
